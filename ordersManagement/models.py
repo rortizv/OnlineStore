@@ -22,3 +22,6 @@ class Orders(models.Model):
     number = models.IntegerField()
     date = models.DateField()
     delivered = models.BooleanField()
+
+    def __str__(self):
+        return 'Order %s' % self.number
