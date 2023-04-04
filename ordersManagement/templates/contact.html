@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Contact</title>
+    </head>
+    <body>
+        <form action="/contact/" method="POST">{% csrf_token %}
+            <h2>Contact</h2>
+            <br>
+            <p>Subject: <input type="text" name="subject" placeholder="Type the subject..."></p>
+            <p>Email: <input type="email" name="email" placeholder="Type the email..."></p>
+            <p>Message: <textarea name="message" rows="15" cols="45" placeholder="Type the message..."></textarea></p>
+            <br>
+            <button type="submit">Send</button>
+            {% comment %} <input type="submit" value="Search"> {% endcomment %}
+        </form>
+    </body>
+</html>

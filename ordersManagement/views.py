@@ -18,3 +18,8 @@ def search(request):
     else:
         message = "You submitted an empty form."
     return HttpResponse(message)
+
+def contact(request):
+    if request.method == 'POST':
+        return render(request, 'thanks.html')
+    return render(request, 'contact.html')
