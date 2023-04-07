@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from ordersManagement.models import Products
 from django.core.mail import send_mail
 from django.conf import settings
+from ordersManagement.forms import ContactForm
 
 
 def search_products(request):
@@ -23,11 +24,11 @@ def search(request):
 
 def contact(request):
     if request.method == 'POST':
-        subject = request.POST['subject']
-        message = request.POST['message']
-        email = request.POST['email']
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['rortiz@inkremental.co']
-        send_mail(subject, message, email_from, recipient_list)
-        return render(request, 'thanks.html')
-    return render(request, 'contact.html')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            send_mail(data['subject'], data['message'], data.get('email', ''), ['rafael289@hotmail.com'],)
+            return HttpResponse(request, 'thanks.html')
+    else:
+        form = ContactForm()
+    return render(request, 'contact_form.html', {'form': form})

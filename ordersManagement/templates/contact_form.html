@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <h1>Contact us</h1>
+        {% if form.errors %}
+            <p style="color: red;">Please, check this field.</p>
+        {% endif %}
+        <form action="" method="POSTt">{% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Send" />
+        </form>
+    </body>
+</html>
